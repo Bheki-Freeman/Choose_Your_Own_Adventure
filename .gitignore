@@ -1,0 +1,4 @@
+main.db
+*.pyc
+__.pyc__
+.pyc__
