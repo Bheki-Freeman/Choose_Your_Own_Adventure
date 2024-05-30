@@ -2,3 +2,4 @@ main.db
 *.pyc
 __.pyc__
 .pyc__
+__pycache__

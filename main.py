@@ -7,11 +7,12 @@ cur_time = datetime.now()
 today = date.today()
 player = Player()
 
+# the login from the main class(it invokes the player login)
 def login():
 	if player.login():
 		start_game()
 	else:
-		print('Login Failure')
+		print('Login Failure') # if the player failed to login, let  him to register
 		register = input('New to the program? [yes / no]: ').lower()
 		if register == 'yes':
 			player.register()
@@ -20,6 +21,8 @@ def login():
 
 def start_game():
 	print(f'Now Starting the Game')
+	quit_game()
+def quit_game():
 	quit_game = input('Do you wanna quit? [yes / no]: ').lower()
 	if quit_game == 'yes':
 		game_over_screen()
