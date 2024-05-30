@@ -57,8 +57,59 @@ def start_game():
 
 
 def go_town():
-    print('Going to town')
+    print('\n\t --- Going to town --- ')
+    drive = input('>> [DRIVING?] (yes / no): ')
+    if drive.lower() == 'yes':
+        mood = int(input('>> [MOOD] (1 -> happy, 2 -> sad, 3 -> angry): '))
+        if mood == 1:
+            print('[WONDERFUL] You will have a lovely day ahead!')
+        elif mood == 2:
+            print('[NOT GOOD] If you continue like this, you will have a bad day!')
+        elif mood == 3:
+            print('[BAD DAY ALREADY!] You already have a bad day!!')
+        else:
+            print('Wrong user input!')
+            go_town()
+        time.sleep(1)
+        print(f'\n>>{player.first_name} You have a problem, you just met THUGS in the robot!')
+        traffic_issue = input('They want the car and Money, what do you do?\n>>\tJUMPROBOT or SUBMIT or FIGHT!: ').lower()
+        if traffic_issue == 'jumprobot':
+            jump_robot()
+        elif traffic_issue == 'submit':
+            submit()
+        elif traffic_issue == 'fight':
+            fight()
+        else:
+            print('>>[WRONG USER INPUT!] Please type choice as it like JUMPROBOT!')
+            go_town()
+    else:
+        print('>>[PUBLIC TRANS THUMBS UP!!] You are saving our nature!!')
+def fight() -> None:
+    print('>>[DANGER!] Fighting with thugs is not advisable UNLESS YOU KNOW WHAT YOU\'RE DOING!')
 
+def submit() -> None:
+    time.sleep(1)
+    print('>>[LOOSER!] You have just lost your car, Thugs slapped you!')
+    choice = input(f'\n>>{player.first_name} You now have two choices HIKEBACKHOME or HIKETOTOWN!: ').lower()
+    if choice == 'hikebackhome':
+        print('Returning back home!')
+    elif choice == 'hiketotown':
+        print('Your fighting spirit is revived! You chose to continue with your trip!!')
+    else:
+        print('>>[WRONG USER INPUT] Please type in choice as is like HIKEBACKHOME!')
+        submit()
+
+def jump_robot() -> None: # If the player decides to ignore the robot and run away with his car
+    print('[DANGER!] You have just run over a thug\'s foot, and you have hit the Robot\'s pole!!')
+    time.sleep(1)
+    choice = input('[WHAT DO YOU DO?] \n>>\tCALLPOLICE or RUNAWAY: ').lower()
+    if choice == 'callpolice':
+        print('Calling 911')
+    elif choice == 'runaway':
+        print('Running Away!!')
+    else:
+        print('[WRONG USER INPUT!] Please type choice as is like CALLPOLICE!')
+        jump_robot()
 
 def stay_home():
     print('Staying Home')
