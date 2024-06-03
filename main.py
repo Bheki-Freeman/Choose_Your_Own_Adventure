@@ -71,8 +71,10 @@ def go_town():
             print('Wrong user input!')
             go_town()
         time.sleep(1)
-        print(f'\n>>{player.first_name} You have a problem, you just met THUGS in the robot!')
-        traffic_issue = input('They want the car and Money, what do you do?\n>>\tJUMPROBOT or SUBMIT or FIGHT!: ').lower()
+        print(
+            f'\n>>{player.first_name} You have a problem, you just met THUGS in the robot!')
+        traffic_issue = input(
+            'They want the car and Money, what do you do?\n>>\tJUMPROBOT or SUBMIT or FIGHT!: ').lower()
         if traffic_issue == 'jumprobot':
             jump_robot()
         elif traffic_issue == 'submit':
@@ -84,22 +86,60 @@ def go_town():
             go_town()
     else:
         print('>>[PUBLIC TRANS THUMBS UP!!] You are saving our nature!!')
+
+
 def fight() -> None:
     print('>>[DANGER!] Fighting with thugs is not advisable UNLESS YOU KNOW WHAT YOU\'RE DOING!')
+
 
 def submit() -> None:
     time.sleep(1)
     print('>>[LOOSER!] You have just lost your car, Thugs slapped you!')
-    choice = input(f'\n>>{player.first_name} You now have two choices HIKEBACKHOME or HIKETOTOWN!: ').lower()
+    choice = input(
+        f'\n>>{player.first_name} You now have two choices HIKEBACKHOME or HIKETOTOWN!: ').lower()
     if choice == 'hikebackhome':
         print('Returning back home!')
     elif choice == 'hiketotown':
         print('Your fighting spirit is revived! You chose to continue with your trip!!')
+        print('Here comes a Truck, it goes the same direction with you (town), and it just takes you!')
+        print(">>[ARRIVED AT TOWN]: you just meet your friends!")
+        action = input(
+            '>>\tSo, what are you doing with your friends? ').lower()
+        match (action):
+            case 'go eating':
+                go_eating()
+            case _:
+                print('[ERROR] Wrong user input!')
+                submit()
     else:
         print('>>[WRONG USER INPUT] Please type in choice as is like HIKEBACKHOME!')
         submit()
 
-def jump_robot() -> None: # If the player decides to ignore the robot and run away with his car
+
+def go_eating() -> None:
+    restaurants = ['Mt Cafe', 'City Center Foods', 'The Winner\'s Kitchen']
+    print('We have the following restaurants with us: ')
+    print(f'>>\t{" | ".join(restaurants)}')
+    restaurant = input('[CHOOSE ONE]: ').strip().lower()
+    if restaurant == restaurants[0].lower():
+        print(f'>>\tSo, you chose the {restaurant} Going there!')
+        time.sleep(1)
+        menu_list = int(input(f'{line}\n \t MAKE A CHOICE \n{line}\n1. Fried Chicken Curry\n'
+                              '2. Boiled Steak\n3. Jelof Rice and Chicken'))
+        match (menu_list):
+            case 1:
+                print('Fried Chicked is being prepared for your!')
+            case 2:
+                print(f'Boiled Steak being prepared for you!')
+            case 3:
+                print(f'Jolof Rice and Chicked being prepared for you!')                    
+            case _:
+                print('[WRONG USER INPUT!] ')
+                go_eating()
+                    
+
+
+def jump_robot() -> None:  # If the player decides to ignore the robot and run away with his car
     print('[DANGER!] You have just run over a thug\'s foot, and you have hit the Robot\'s pole!!')
     time.sleep(1)
     choice = input('[WHAT DO YOU DO?] \n>>\tCALLPOLICE or RUNAWAY: ').lower()
@@ -110,6 +150,7 @@ def jump_robot() -> None: # If the player decides to ignore the robot and run aw
     else:
         print('[WRONG USER INPUT!] Please type choice as is like CALLPOLICE!')
         jump_robot()
+
 
 def stay_home():
     print('Staying Home')
