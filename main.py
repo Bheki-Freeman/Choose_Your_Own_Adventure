@@ -89,9 +89,25 @@ def go_town():
 
 
 def fight() -> None:
+    fight()
+
+def fight() -> None:
     print('>>[DANGER!] Fighting with thugs is not advisable UNLESS YOU KNOW WHAT YOU\'RE DOING!')
-
-
+    print('While fighting, one thug just held you on power grip, what do you do?')
+    action = int(input('\t1. Hit him with your right elbow\n\t2. Push his hands off your neck\n\t[CHOICE]: '))
+    if action == 1:
+        print('[GOOD MOVE]: Just dispowered him, he\'s now down, holding his stomach!')
+        action = input('Type "Grab the car", to grab the car and run away: ')
+        if action.strip().lower() == 'grab the car':
+            print('[LUCKY ESCAPE!] You just escaped: Running to town!')
+        else:
+            print('[CHECK MATE!]: You are just too slow, you have been hardly hit!')
+            print('You Loose a point !!')
+            fight()
+    else:
+        print('[FAILED!] You can\'t get off from vice-grip like that: YOU LOST!')
+        print('You lose a point!')
+        fight()
 def submit() -> None:
     time.sleep(1)
     print('>>[LOOSER!] You have just lost your car, Thugs slapped you!')
@@ -104,17 +120,24 @@ def submit() -> None:
         print('Here comes a Truck, it goes the same direction with you (town), and it just takes you!')
         print(">>[ARRIVED AT TOWN]: you just meet your friends!")
         action = input(
-            '>>\tSo, what are you doing with your friends? ').lower()
+            '>>\tSo, what are you doing with your friends? (GO EATING or GO SKATING or GO GAMING)').lower()
         match (action):
             case 'go eating':
                 go_eating()
+            case 'go skating':
+                go_skating()
+            case 'go gaming':
+                go_gaming()
             case _:
-                print('[ERROR] Wrong user input!')
+                print('[ERROR] Please type exactly the actions!')
                 submit()
     else:
         print('>>[WRONG USER INPUT] Please type in choice as is like HIKEBACKHOME!')
         submit()
-
+def go_skating() -> None:
+    print('Going   Skating!')
+def go_gaming() -> None:
+    print('Going Gaming!')
 
 def go_eating() -> None:
     restaurants = ['Mt Cafe', 'City Center Foods', 'The Winner\'s Kitchen']
@@ -122,7 +145,7 @@ def go_eating() -> None:
     print(f'>>\t{" | ".join(restaurants)}')
     restaurant = input('[CHOOSE ONE]: ').strip().lower()
     if restaurant == restaurants[0].lower():
-        print(f'>>\tSo, you chose the {restaurant} Going there!')
+        print(f'>>\tSo, you chose the {restaurant} Going there!')        
         time.sleep(1)
         menu_list = int(input(f'{line}\n \t MAKE A CHOICE \n{line}\n1. Fried Chicken Curry\n'
                               '2. Boiled Steak\n3. Jelof Rice and Chicken'))
@@ -136,7 +159,39 @@ def go_eating() -> None:
             case _:
                 print('[WRONG USER INPUT!] ')
                 go_eating()
-                    
+    elif restaurant == restaurants[1].lower():
+        print(f'>>\tSo, you chose the {restaurant} Going there!')        
+        time.sleep(1)
+        menu_list = int(input(f'{line}\n \t MAKE A CHOICE \n{line}\n1. Ice Cream : E15.99\n'
+                              '2. Ice Pops : E10.99\n3. Liquid Jelly : E20.99\n[CHOICE]: '))
+        match (menu_list):
+            case 1:
+                t_cash = float(input("Type your Payment here: "))
+                if t_cash < 15.99:
+                    top_up = float(input(f'You money {t_cash} is less than E15.99, Please add E{15.99 - t_cash:.2f}: '))                                                           
+                    print(f'You have just added {top_up} and the money is now E{top_up + t_cash:.2f}')
+                    print(f'Your change is : E{(t_cash + top_up) - 15.99:.2f}')
+                else:
+                    print(f'Your Ice cream is prepared! Change is E{t_cash-15.99:.2f}')
+            case 2:
+                t_cash = float(input("Type your Payment here: "))
+                if t_cash < 10.99:
+                    top_up = float(input(f'You money {t_cash} is less than E10.99, Please add E{10.99 - t_cash:.2f}: '))                                                           
+                    print(f'You have just added {top_up} and the money is now E{top_up + t_cash:.2f}')
+                    print(f'Your change is : E{(t_cash + top_up) - 10.99:.2f}')
+                else:
+                    print(f'Your Ice cream is prepared! Change is E{t_cash-10.99:.2f}')
+            case 3:
+                t_cash = float(input("Type your Payment here: "))
+                if t_cash < 20.99:
+                    top_up = float(input(f'You money E{t_cash} is less than E20.99, Please add E{20.99 - t_cash:.2f}: '))                                                           
+                    print(f'You have just added {top_up} and the money is now E{top_up + t_cash:.2f}')
+                    print(f'Your change is : E{(t_cash + top_up) - 20.99:.2f}')
+                else:
+                    print(f'Your Ice cream is prepared! Change is E{t_cash-20.99:.2f}')
+            case _:
+                print('[WRONG USER INPUT!]')   
+                go_eating()                 
 
 
 def jump_robot() -> None:  # If the player decides to ignore the robot and run away with his car
@@ -181,7 +236,7 @@ def welcome_player() -> None:
     print(f'{line}\n\t--- Welcome Player ---\n{line}\nHope you enjoy playing the game ahead!\n')
     print(
         f'{line}\n--- [DATE] {today} --- [TIME] {cur_time.hour}:{cur_time.minute}:{cur_time.second} ---\n{line}\n')
-    register = input('New to the program? [yes / no]: ').lower()
+    register = input('New to the program? [yes / no]: ').strip().lower()
     if register == 'yes':
         registar()
     elif register == 'no':
