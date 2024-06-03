@@ -9,3 +9,5 @@
  -------------------------------------------------
  Some kind of a Science and fiction movie Setup
  -------------------------------------------------
+
+NB: This game hasn't yet been configured for: validations, interactions and Levels! So, provided you want to improve it, remember to give negative situations for validations and points (like: you have been hit by a car, you are dead or you loose a point!)
